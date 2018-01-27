@@ -1,6 +1,6 @@
 (defproject lxhome "0.3.1"
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.908"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
+                 [org.clojure/clojurescript "1.9.946"]
                  [reagent "0.8.0-alpha1"]
                  [re-frame "0.10.1"]
                  [re-frisk "0.4.5"]

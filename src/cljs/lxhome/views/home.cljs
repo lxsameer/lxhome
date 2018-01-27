@@ -10,12 +10,20 @@
    [:i {:class :icon-th}]])
 
 
+(defn link-button
+  ([link text]
+   (link-button link text nil))
+
+  ([link text icon]
+
+   [:a {:href link :class "button button-primary"}
+    (if icon
+      [:i {:class icon}])
+    text]))
+
 (defn cv-button
   []
-  [:section {:class :CV}
-   [:a {:href "http://dl.lxsameer.com/CV/SameerRahmani.pdf" :class "button default large"}
-    "Download My CV"]])
-
+  (link-button "//dl.lxsameer.com/CV/SameerRahmani.pdf" "Download My CV"))
 
 (defn menu-items
   []
@@ -83,25 +91,66 @@
      "Instagram"]]])
 
 
-(defn name-and-title
+(defn header
   [menu]
-  [:section {:class "title-header"}
-   [:img {:src "images/me-1.jpg" :class :avatar :alt "Sameer Rahmani (@lxsameer) avatar"}]
-   [:span {:class :no-wrap}
-    [menu-button]
-    [:span {:class "title"} "Sameer" [:span {:class "last-name"} "Rahmani"]]]
-   [:h2 {:class "subtitle"} "Senior Software Engineer"]
+  [:div {:class "row header"}
+   [:div {:class "column"}
+    [:a {:href "https://twitter.com/lxsameer"}
+     [:i {:class "icon-twitter"}]]
+    [:a {:href "https://github.com/lxsameer"}
+     [:i {:class "icon-github"}]]
+    [:a {:on-click #(js/console.log "asdasd")}
+     [:i {:class "icon-th"}]]
+    [:a {:href "https://www.linkedin.com/in/lxsameer/"}
+     [:i {:class :icon-linkedin}]]
+    [:a {:href "https://blog.lxsamer.com"}
+     [:i {:class :icon-rss}]]]])
 
-   (if (not menu)
-     [cv-button]
-     [menu-items])
-   [:span {:class :copyright} (str "© 2010-2017 Sameer Rahmani - " version)]])
+(defn avatar
+  [menu]
+  [:section {:class :avatar-section}
+   [:div {:class "row"}
+    [:div {:class "column"}
+     [:section {:class "title-header"}
+      [:img {:src "images/me-1.jpg" :class :avatar :alt "Sameer Rahmani (@lxsameer) avatar"}]
+      [:br]
+      [:span {:class :no-wrap}
+       ;;[menu-button]
+       [:span {:class "title"} "Sameer" [:span {:class "last-name"} "Rahmani"]]]
+      [:br]
+      [:span {:class "subtitle"} "Senior Software Engineer"]]]]])
 
+;; [:div {:class "margin"}
+;;  [link-button "https://twitter.com/lxsameer" "Tweets" :icon-twitter]
+;;  [link-button "https://github.com/lxsameer" "Github Profile" :icon-github]
+;;  [link-button "https://www.linkedin.com/in/lxsameer/" "Linkedin Profile" :icon-linkedin]
+;;  [cv-button]]
+;;     ;; (if (not menu)
+;;     ;;   [cv-button]
+;;     ;;   [menu-items])
+
+;; [:span {:class :copyright} (str "© 2010-2018 Sameer Rahmani - " version)]
+
+(defn cv
+  [menu]
+  [:div {:class "row"}
+   [:div {:class "column"}
+    [cv-button]]])
+
+(defn footer
+  []
+  [:footer
+   [:div {:class "row"}
+    [:div {:class "column"}
+     [:span {:class :copyright} (str "© 2010-2018 Sameer Rahmani - " version)]]]])
 
 (defn home-panel []
   (let [menu (re-frame/subscribe [:menu-state])]
     (fn []
-      [:div {:class :container-fluid}
-       [:section {:class "row middle-row middle-xs"}
-        [:div {:class "col-xs-12 col-md-offset-2 col-md-8 col-lg-offset-4 col-lg-4"}
-         [name-and-title @menu]]]])))
+      [:section {:class "container"}
+       [header @menu]
+       [avatar @menu]
+       [:br]
+       [cv     @menu]
+       [:br]
+       [footer @menu]])))
