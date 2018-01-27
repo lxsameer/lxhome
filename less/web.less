@@ -1,4 +1,4 @@
-@color-1: white;
+@color-1: #fafafa;
 @color-2: #efefef;
 @color-3: #4BB4F5;
 @color-4: #6B54AA;
@@ -151,4 +151,43 @@ footer {
 }
 @media (max-width: 667px) {
   html {font-size: 10px;}
+}
+
+
+
+
+.card {
+  perspective: 1000px;
+  height: 500px;
+}
+/* flip the pane when hovered */
+.card.active .flipper, .flip-container.active .flipper {
+  transform: rotateY(180deg);
+}
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+  backface-visibility: hidden;
+
+
+}
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg);
+  margin-top: -300px;
 }

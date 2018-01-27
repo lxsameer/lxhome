@@ -99,7 +99,7 @@
      [:i {:class "icon-twitter"}]]
     [:a {:href "https://github.com/lxsameer"}
      [:i {:class "icon-github"}]]
-    [:a {:on-click #(js/console.log "asdasd")}
+    [:a {:on-click #(re-frame/dispatch [:toggle-menu])}
      [:i {:class "icon-th"}]]
     [:a {:href "https://www.linkedin.com/in/lxsameer/"}
      [:i {:class :icon-linkedin}]]
@@ -120,17 +120,6 @@
       [:br]
       [:span {:class "subtitle"} "Senior Software Engineer"]]]]])
 
-;; [:div {:class "margin"}
-;;  [link-button "https://twitter.com/lxsameer" "Tweets" :icon-twitter]
-;;  [link-button "https://github.com/lxsameer" "Github Profile" :icon-github]
-;;  [link-button "https://www.linkedin.com/in/lxsameer/" "Linkedin Profile" :icon-linkedin]
-;;  [cv-button]]
-;;     ;; (if (not menu)
-;;     ;;   [cv-button]
-;;     ;;   [menu-items])
-
-;; [:span {:class :copyright} (str "© 2010-2018 Sameer Rahmani - " version)]
-
 (defn cv
   [menu]
   [:div {:class "row"}
@@ -149,8 +138,13 @@
     (fn []
       [:section {:class "container"}
        [header @menu]
-       [avatar @menu]
-       [:br]
-       [cv     @menu]
+       [:section {:class (str "card" (when @menu " active"))}
+        [:div {:class "flipper"}
+         [:div {:class "front"}
+          [avatar @menu]
+          [:br]
+          [cv     @menu]]
+         [:div {:class "back"}
+          [:p "Asd ad asda sdad asd ad asd asd "]]]]
        [:br]
        [footer @menu]])))
