@@ -71,11 +71,15 @@ a {
 }
 
 .header {
-  padding: 1em 0 0 1em;
+  padding: 1em 0;
   text-align: center;
+
   a {
     color: @text-color;
     padding: 0.5em;
+    border-radius: 100%;
+    padding: 0 1rem;
+
     &:hover {
       color: @color-4;
     }
@@ -116,27 +120,6 @@ a {
   font-weight: 300;
 }
 
-
-
-header.header {
-  margin-top: 10px;
-  position: fixed;
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 20px;
-
-  .menu-icon {
-    cursor: pointer;
-    flex: 0;
-    background: red;
-    padding: 10px;
-  }
-}
-
-
 .avatar {
   border-radius: 100%;
   width: 5em;
@@ -158,36 +141,27 @@ footer {
 
 .card {
   perspective: 1000px;
-  height: 500px;
-}
-/* flip the pane when hovered */
-.card.active .flipper, .flip-container.active .flipper {
-  transform: rotateY(180deg);
 }
 
-/* flip speed goes here */
-.flipper {
-  transition: 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
+.menu {
+  position: fixed;
+  margin: auto;
+  width: 30%;
+  top: 200px;
+  left: 0;
+  right: 0;
+  &.active {
+    top: 0;
+  }
 }
+.social-links {
+  width: auto;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #e8e8e8;
 
-/* hide back of pane during swap */
-.front, .back {
-  backface-visibility: hidden;
-
-
-}
-
-/* front pane, placed above back */
-.front {
-  z-index: 2;
-  /* for firefox 31 */
-  transform: rotateY(0deg);
-}
-
-/* back, initially hidden pane */
-.back {
-  transform: rotateY(180deg);
-  margin-top: -300px;
 }

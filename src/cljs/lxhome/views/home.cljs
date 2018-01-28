@@ -90,21 +90,21 @@
      [:i {:class :icon-instagram}]
      "Instagram"]]])
 
-
 (defn header
   [menu]
   [:div {:class "row header"}
    [:div {:class "column"}
-    [:a {:href "https://twitter.com/lxsameer"}
-     [:i {:class "icon-twitter"}]]
-    [:a {:href "https://github.com/lxsameer"}
-     [:i {:class "icon-github"}]]
-    [:a {:on-click #(re-frame/dispatch [:toggle-menu])}
-     [:i {:class "icon-th"}]]
-    [:a {:href "https://www.linkedin.com/in/lxsameer/"}
-     [:i {:class :icon-linkedin}]]
-    [:a {:href "https://blog.lxsamer.com"}
-     [:i {:class :icon-rss}]]]])
+    [:nav
+     [:a {:href "https://twitter.com/lxsameer"}
+      [:i {:class "icon-twitter"}]]
+     [:a {:href "https://github.com/lxsameer"}
+      [:i {:class "icon-github"}]]
+     ;; [:a {:on-click #(re-frame/dispatch [:toggle-menu])}
+     ;;  [:i {:class "icon-th"}]]
+     [:a {:href "https://www.linkedin.com/in/lxsameer/"}
+      [:i {:class :icon-linkedin}]]
+     [:a {:href "https://blog.lxsamer.com"}
+      [:i {:class :icon-rss}]]]]])
 
 (defn avatar
   [menu]
@@ -133,18 +133,45 @@
     [:div {:class "column"}
      [:span {:class :copyright} (str "© 2010-2018 Sameer Rahmani - " version)]]]])
 
+(defn more-info
+  []
+  [:ul {:class "social-links"}
+   [:li
+    [:a {:href "/"}
+     [:i {:class :icon-key}]
+     "My GPG Public Key"]
+    [:br]
+    [:span "Finger print:  05C63462DD0677B5"]]
+   [:li
+    [:a {:href "/"}
+     [:i {:class :icon-instagram}]
+     "Instagram"]]
+   [:li
+    [:a {:href "/" :class ""}
+     [:i {:class :icon-mic}]
+     "Podcasts"]]
+   [:li
+    [:a {:href "/" :class ""}
+     [:i {:class :icon-vcard}]
+     "Contact"]]])
+
+(defn dropdown
+  [menu]
+  [:nav {:class (str "menu" (when menu " active"))}
+   [more-info]])
+
+
 (defn home-panel []
   (let [menu (re-frame/subscribe [:menu-state])]
     (fn []
-      [:section {:class "container"}
-       [header @menu]
-       [:section {:class (str "card" (when @menu " active"))}
-        [:div {:class "flipper"}
-         [:div {:class "front"}
-          [avatar @menu]
-          [:br]
-          [cv     @menu]]
-         [:div {:class "back"}
-          [:p "Asd ad asda sdad asd ad asd asd "]]]]
-       [:br]
-       [footer @menu]])))
+      [:div
+       ;;[dropdown @menu]
+       [:section {:class "container"}
+        [header @menu]
+        [:section {:class (str "card" (when @menu " active"))}
+         [avatar @menu]
+         [:br]
+         [cv     @menu]]
+
+        [:br]
+        [footer @menu]]])))
