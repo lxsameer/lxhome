@@ -5,9 +5,9 @@ rm -rf ~/resources
 echo "[REMOTE]: Extracting the package..."
 tar zxf ~/tmp/package.tar.gz
 echo "[REMOTE]: Installing the content..."
-mkdir -p ~/www/
-cp -rv ~/resources/public/ ~/www/home/
-chmod 755 ~/www/home/ -R
+mkdir -p ~/lxsameer.com
+cp -rv ~/resources/public/ ~/lxsameer.com/home/
+chmod 755 ~/lxsameer.com/home/ -R
 echo "[REMOTE]: Cleaning up..."
 rm -rf ~/resources ~/tmp/
 mkdir -p ~/tmp

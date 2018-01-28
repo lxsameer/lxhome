@@ -4,6 +4,8 @@ echo "Cleaning up..."
 rm ./tmp -rf
 mkdir -p tmp/
 echo "Compiling..."
+lein less once
+lein cljsbuild once min
 echo "Creating the package..."
 tar zcf tmp/package.tar.gz resources/public/
 echo "Uploading the package..."
