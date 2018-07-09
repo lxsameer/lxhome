@@ -2,7 +2,7 @@
 
 echo "Cleaning up..."
 rm ./tmp -rf
-mkdir -p tmp/
+mkdir -p ./tmp/
 echo "Compiling..."
 lein less once
 lein cljsbuild once min
